@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cortex Launcher №1 в мире читов!</title>
+    <style>
+        /* Root variables for theme */
+        :root {
+            --bg-color: #121212; /* Dark background */
+            --text-color: #ffffff; /* White text */
+            --primary-purple: #6a1b9a; /* Dark purple */
+            --dark-gradient: #121212; /* Dark end */
+            --gradient: linear-gradient(45deg, var(--primary-purple), var(--dark-gradient), var(--primary-purple)); /* Gradient from dark purple to dark */
+            --glow: 0 0 15px rgba(106, 27, 154, 0.6); /* Softer purple glow */
+            --text-glow: 0 0 5px rgba(142, 36, 170, 0.8), 0 0 10px rgba(142, 36, 170, 0.4); /* Glow for text */
+            --transparent-bg: rgba(18, 18, 18, 0.8); /* Transparent dark */
+            --border-radius: 10px; /* Less strong rounding */
+            --font-weight: 700; /* Thicker font */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            font-weight: var(--font-weight); /* Thicker font globally */
+        }
+
+        /* Header with title moved to left */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; /* Moved to left */
+            padding: 20px;
+            background: var(--transparent-bg);
+            box-shadow: var(--glow);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .site-title {
+            display: flex;
+            align-items: center;
+            font-size: 2em;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: gradient-shift 5s ease infinite; /* Slower for smoother */
+            background-size: 300% 300%; /* Larger for better shimmer */
+            text-shadow: var(--text-glow); /* Glow on text */
+        }
+
+        .site-icon {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 50%;
+            box-shadow: var(--glow);
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Navigation tabs */
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            padding: 10px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            color: var(--text-color);
+            background: var(--transparent-bg);
+            border-radius: var(--border-radius);
+            transition: all 0.5s ease; /* Smoother transitions */
+            box-shadow: var(--glow);
+            text-shadow: var(--text-glow); /* Glow on tab text */
+        }
+
+        nav a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(142, 36, 170, 0.7);
+        }
+
+        nav a.active {
+            background: var(--gradient);
+            color: #fff;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 300% 300%;
+        }
+
+        /* Tab content sections */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            animation: fadeIn 1s ease; /* Smoother fade in */
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Home tab */
+        #home {
+            text-align: center;
+        }
+
+        .home-title {
+            font-size: 3em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            text-shadow: var(--text-glow); /* Glow */
+        }
+
+        .home-title span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 300% 300%;
+        }
+
+        .beta-tag {
+            margin-left: 10px;
+            font-size: 0.8em;
+            padding: 5px 10px;
+            border-radius: var(--border-radius);
+            background: var(--gradient);
+            animation: gradient-shift 5s ease infinite, pulse 2s infinite; /* Slower pulse */
+            box-shadow: var(--glow);
+            text-shadow: var(--text-glow);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* Photocard - larger */
+        .photocard {
+            perspective: 1500px; /* Softer 3D */
+            width: 600px; /* Larger */
+            height: 400px; /* Larger */
+            margin: 0 auto;
+            transition: all 0.5s ease; /* Smoother */
+        }
+
+        .photocard img {
+            width: 100%;
+            height: 100%;
+            border-radius: var(--border-radius);
+            border: 2px solid transparent;
+            background-image: var(--gradient);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: var(--glow);
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease; /* Smoother */
+        }
+
+        .photocard:hover img {
+            transform: rotateY(8deg) rotateX(8deg) scale(1.03); /* Subtler movement */
+            box-shadow: 0 0 35px rgba(142, 36, 170, 0.8);
+        }
+
+        /* Download tab */
+        #download {
+            text-align: center;
+        }
+
+        .description {
+            max-width: 800px; /* Slightly larger */
+            margin: 20px auto;
+            padding: 20px;
+            background: var(--transparent-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--glow);
+            animation: fadeIn 1s ease;
+            text-shadow: var(--text-glow); /* Glow */
+        }
+
+        .download-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 20px;
+            background: var(--gradient);
+            color: #fff;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-size: 1.2em;
+            box-shadow: var(--glow);
+            transition: all 0.5s ease;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 300% 300%;
+            text-shadow: var(--text-glow);
+            border: 2px solid transparent; /* Gradient border */
+            background-image: var(--gradient), var(--gradient);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 35px rgba(142, 36, 170, 0.8);
+        }
+
+        /* Last Updates tab */
+        #updates {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .update-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--transparent-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--glow);
+            transition: all 0.5s ease;
+            text-shadow: var(--text-glow);
+        }
+
+        .update-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(142, 36, 170, 0.6);
+        }
+
+        .update-date {
+            font-weight: bold;
+            color: var(--primary-purple);
+        }
+
+        .update-title {
+            font-size: 1.2em;
+            margin: 5px 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--transparent-bg);
+            box-shadow: var(--glow);
+            margin-top: 40px;
+        }
+
+        .rights {
+            margin-bottom: 10px;
+            text-shadow: var(--text-glow);
+        }
+
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-btn {
+            padding: 10px 20px;
+            background: var(--gradient);
+            color: #fff;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            box-shadow: var(--glow);
+            transition: all 0.5s ease;
+            animation: gradient-shift 5s ease infinite;
+            background-size: 300% 300%;
+            text-shadow: var(--text-glow);
+            border: 2px solid transparent;
+            background-image: var(--gradient), var(--gradient);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 35px rgba(142, 36, 170, 0.8);
+        }
+
+        /* Particle animations - surprise! Subtle purple particles floating */
+        #particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles"></div> <!-- Particle container -->
+
+    <header>
+        <div class="site-title">
+            <img src="images/ico.jpg" alt="" class="site-icon">
+                                                                  Cortex Launcher | World of Cheats
+        </div>
+    </header>
+
+    <nav>
+        <a href="#home" class="tab-link active">Главная</a>
+        <a href="#download" class="tab-link">Скачать</a>
+        <a href="#updates" class="tab-link">Последние обновления</a>
+    </nav>
+
+    <section id="home" class="tab-content active">
+        <div class="home-title">
+            <span>Cortex Launcher</span>
+            <div class="beta-tag">beta 1.6</div>
+        </div>
+        <div class="photocard">
+            <img src="images/image.jpg" alt="Error">
+        </div>
+    </section>
+
+    <section id="download" class="tab-content">
+        <h2>О программе:</h2>
+        <div class="description">
+            Cortex Launcher — это мощный и универсальный игровой лаунчер
+ созданный для тех, кто стремится к максимальному преимуществу в играх. 
+С более чем 400+ видами читов, мы предлагаем уникальные инструменты, которые подойдут для самых популярных игр
+ таких как CS2, Fortnite, Overwatch 2, Minecraft, Sea of Thieves и многих других. 
+Наш арсенал включает эксклюзивный собственный чит, разработанный нашей командой, чтобы обеспечить вам непревзойденный игровой опыт.
+Мы понимаем, насколько важна безопасность.
+ Поэтому Cortex Launcher оснащен передовой системой защиты от DDOS-атак, гарантирующей стабильную работу даже в самых экстремальных условиях. 
+Ваши данные и игровой прогресс надежно защищены, чтобы вы могли сосредоточиться на игре, не отвлекаясь на угрозы.
+Cortex — это не просто лаунчер, это сообщество, которому доверяют тысячи игроков по всему миру с момента нашего открытия в 2023 году. 
+Мы гордимся своей прозрачностью и открытостью: наша команда всегда на связи, чтобы ответить на ваши вопросы и предоставить поддержку. 
+Регулярные обновления и новые функции делают Cortex Launcher надежным спутником, который постоянно развивается вместе с вашими потребностями.
+Выбирайте Cortex Launcher — и станьте легендой в своих любимых играх. Мы здесь, чтобы помочь вам доминировать с уверенностью и стилем!
+        </div>
+        <div class="photocard">
+            <img src="images/image.jpg" alt="Error image">
+        </div>
+        <a href="https://test.exe" class="download-btn">Скачать</a>
+    </section>
+
+    <section id="updates" class="tab-content">
+ </div>
+<h2>Новые обновления</h2>
+        <div class="update-item">
+            <div class="update-date">[2025-10-16 v1.6]</div>
+            <div class="update-title"> Защита.</div>
+            <p>- Обновили инжектор читов в игры, а так же обновили защиту от проверок,теперь чит уникально чистит себя везде.</p>
+        </div>
+ </div>
+        <div class="update-item">
+            <div class="update-date">[2025-04-09 v1.5]</div>
+            <div class="update-title"> Очистка.</div>
+            <p>- Удаление старых читов.</p>
+        </div>
+ </div>
+        <div class="update-item">
+            <div class="update-date">[2025-02-05 v1.4]</div>
+            <div class="update-title"> Оптимизация.</div>
+            <p>- Оптимизация лаунчера.</p>
+        </div>
+        <h2>Старые обновления</h2>
+        <div class="update-item">
+            <div class="update-date">[2024-07-17 v1.3]</div>
+            <div class="update-title"> Фикс Ошибок.</div>
+            <p>Улучшены времена загрузки и добавлены новые модули читов для лучшей совместимости с последними играми.</p>
+        </div>
+        <div class="update-item">
+            <div class="update-date">[2024-07-15 v1.2]</div>
+            <div class="update-title"> Добавление Читов.</div>
+            <p>Добавили более 200+ Читов, под каждую игру.</p>
+        </div>
+        <div class="update-item">
+            <div class="update-date">[2024-07-06 v1.1]</div>
+            <div class="update-title"> Исправление Ошибок.</div>
+            <p>- Убраны ошибки, и слегка изменили GUI программы.</p>
+        </div>
+<div class="update-item">
+            <div class="update-date">[2023-05-06 v1.0]</div>
+            <div class="update-title"> Мы открылись! </div>
+            <p>- Лаунчер был готов, и готов к установке!</p>
+        </div>
+    </section>
+
+
+
+
+    <footer>
+        <div class="rights">Все права защищены © 2025 Cortex Launcher</div>
+        <div class="social-buttons">
+            <a href="https://t.me/CortexLauncher" class="social-btn">Telegram</a>
+            <a href="https://www.youtube.com/@Cortex-Launcher" class="social-btn">YouTube</a>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching logic
+        const tabs = document.querySelectorAll('.tab-link');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = tab.getAttribute('href').substring(1);
+
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        // 3D tilt effect on photocard with smoother movement
+        const photocards = document.querySelectorAll('.photocard');
+        photocards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateY = (x - centerX) / centerX * 8; // Subtler
+                const rotateX = (centerY - y) / centerY * 8;
+                card.querySelector('img').style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(1.03)`;
+            });
+
+            card.addEventListener('mouseleave', () => {
+                card.querySelector('img').style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
+            });
+        });
+
+        // Particle animation - surprise! Floating subtle purple particles
+        function createParticles() {
+            const canvas = document.createElement('canvas');
+            canvas.id = 'particles-canvas';
+            const particlesDiv = document.getElementById('particles');
+            particlesDiv.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            const particles = [];
+            const numParticles = 100; // Subtle amount
+
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.color = 'rgba(106, 27, 154, ' + (Math.random() * 0.5 + 0.1) + ')'; // Purple variations
+                }
+
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+
+                    if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                    if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+                }
+
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = 'rgba(142, 36, 170, 0.5)';
+                    ctx.fill();
+                }
+            }
+
+            for (let i = 0; i < numParticles; i++) {
+                particles.push(new Particle());
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.update();
+                    p.draw();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
+        }
+
+        createParticles();
+    </script>
+</body>
+</html>
